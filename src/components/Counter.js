@@ -1,14 +1,19 @@
-import { useState } from "react";
+// import { useState } from "react";
+
+import { useDispatch, useSelector } from "react-redux";
+import { increment, decrement, incrementByAmount } from "../reducers/counter";
 
 export const Counter =()=>{
-  const [counter, setCounter] = useState(0);
-  const amuount = 2;
+//   const [counter, setCounter] = useState(0);
+    const count = useSelector(state => state.counter.value);
+    const dispatch = useDispatch();
+    const amuount = 2;
   return (
     <div>
       <h1>Count: {counter}</h1>
-      <button onClick={() => setCounter(counter + 1)}>Increment</button>
-      <button onClick={() => setCounter(counter - 1)}>Decrement</button>
-      <button onClick={() => setCounter(counter + amuount)}>
+      <button onClick={() => dispatch(increment())}>Increment</button>
+      <button onClick={() => dispatch(decrement())}>Decrement</button>
+      <button onClick={() => dispatch(incrementByAmount(amount))}>
         Increment by Amount
       </button>
     </div>

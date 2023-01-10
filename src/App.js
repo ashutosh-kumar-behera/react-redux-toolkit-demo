@@ -1,10 +1,21 @@
 import "./styles.css";
-import { Counter } from './components/Counter'
+import { Counter } from './components/Counter';
+import {Provider} from 'react-redux';
+import { configureStore } from "@reduxjs/toolkit";
+import counterReducer from './reducers/counter';
+
+const store = configureStore({
+  reducers:{
+    counter: counterReducer   // global state.counter
+  }
+})
 
 export default function App() {
   return (
     <div className="App">
-      <Counter></Counter>
+      <Provider store={store}>
+      <Counter/>
+      </Provider>
     </div>
   );
 }
